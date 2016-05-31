@@ -84,7 +84,7 @@
 					$("#res13").val(" Longitud: ");
 					
 ;				}
-
+				
 		}
 	</script>
 		
@@ -96,31 +96,21 @@
 			var temp = $("#temperatura").val();
 			var vol = $("#volumen").val();
 		
-			// variables que guardan las unidades sigen como string
-			var te = $("#temperaturaGlobal").val() ;
-			var vo = $("#volumenGlobal").val() ;
 			
-			if (te=="farenheit"){
-				temp=(temp-32)*5/9;
-				
-			}
-			if (vo=="galones"){
-				vol=3.785411784*vol;
-			}
 		//	document.getElementById("textoTest").innerHTML = temp;
 			var requestData = '';
 			var resultElement1= $('#resultado1');
 			var resultElement2= $('#resultado2');
 				$.ajax({
-					url: 'http://api.openweathermap.org/data/2.5/forecast/city?q='+temp+','+vol+'&APPID=1e3be9b757b07f2b6c697ed9db350c6d',
+					url: 'http://api.openweathermap.org/data/2.5/forecast/city?q='+vol+','+temp+'&units=metric&type=accurate&APPID=1e3be9b757b07f2b6c697ed9db350c6d',
 					method: 'get',
 					data:{},
 					dataType: 'json',
 					success: function(data) {
-					var result1=(Math.floor(data.list[0].main.temp))-273.15;
-					var result2=(Math.floor(data.list[0].main.temp_max))-273.15;
-					var result3=(Math.floor(data.list[0].main.temp_min))-273.15;
-					resultElement1.html($('#res10').val()+data.city.name + " " + $("#codPais").val() + '<br/>'+ $('#res12').val()+ data.city.coord.lat + $('#res13').val()+ data.city.coord.lon + '<br/>'+ $('#res1').val()+Math.floor(result1) + " °C" +'<br/>' + $('#res2').val()+data.list[0].main.pressure + " hpa" + '<br/>' + $('#res3').val()+data.list[0].main.humidity + " %" + '<br/>' + $('#res4').val()+ data.list[0].wind.speed + '<br/>' + $('#res5').val()+data.list[0].wind.deg + '<br/>' + $('#res6').val()+data.list[0].weather[0].main + '<br/>' ) ;
+					var result1=(Math.floor(data.list[0].main.temp));
+					var result2=(Math.floor(data.list[0].main.temp_max));
+					var result3=(Math.floor(data.list[0].main.temp_min));
+					resultElement1.html($('#res10').val()+data.city.name + " " + temp + '<br/>'+ $('#res12').val()+ data.city.coord.lat + $('#res13').val()+ data.city.coord.lon + '<br/>'+ $('#res1').val()+Math.floor(result1) + " °C" +'<br/>' + $('#res2').val()+data.list[0].main.pressure + " hpa" + '<br/>' + $('#res3').val()+data.list[0].main.humidity + " %" + '<br/>' + $('#res4').val()+ data.list[0].wind.deg + '<br/>' + $('#res5').val()+data.list[0].wind.speed + '<br/>' + $('#res6').val()+data.list[0].weather[0].main + '<br/>' ) ;
 					resultElement2.html($('#res7').val()+data.list[0].weather[0].description + '<br/>' + $('#res11').val()+data.list[0].main.sea_level + " hpa" + '<br/>' + $('#res8').val() + Math.floor(result2) + " °C" + '<br/>' + $('#res9').val()+Math.floor(result3) + " °C" + '<br/>'  ) ;
 					$("#OK3").hide();
 					$("#ingresaDatos").hide();
