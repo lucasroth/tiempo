@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+	<link rel="stylesheet" href="css/demo.css">
+	<link rel="stylesheet" href="css/countrySelect.css">
+	<link rel="stylesheet" href="css/checkbox.css">
+        <title>Anglo Weather</title>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/countrySelect.js"></script>
+	<script src="js/jquery.soap.js"></script>
+	
+	<script>
+		function paso2() {
+ 		
+			var countryData = $("#country_selector").countrySelect("getSelectedCountryData");
+			$("#OK1").hide();
+			$("#selPais").hide();
+			$("#cod1").hide();
+			$("#ingresaDatos").show();
+			$("#OK3").show();
+			$("#idiomaGlobal").val(countryData.idioma);
+			$("#volumenGlobal").val(countryData.vol);
+			$("#temperaturaGlobal").val(countryData.tem);
+			$("#codPais").val(countryData.iso2);
+			$("#temperatura").val(countryData.iso2);
+			
+				if (countryData.idioma == "en"){
+					$("#label7").text("Enter Data Input");
+					$("#label8").text("Enter City");
+					$("#label9").text("Enter Country Code");
+					$("#res1").val("Actual Temperature: ");
+					$("#res2").val("Actual Pressure: ");
+					$("#res3").val("Humedad Relativa Actual: ");
+					$("#res4").val("Wind Direction: ");
+					$("#res5").val("Wind Speed: ");
+					$("#res6").val("Sky Conditions");
+					$("#res7").val("Sky Description");
+					$("#res8").val("Maximum Temperature");
+					$("#res9").val("Minimum Temperature: ");
+					$("#res10").val("Station Name: ");
+					$("#res11").val("Sea Level Pressure: ");
+					$("#res12").val("Latitud: ");
+					$("#res13").val(" Longitude: ");
+					
+				}
+				if (countryData.idioma == "es"){
+					$("#label7").text("Ingreso de Datos");
+					$("#label8").text("Ingresa Ciudad");
+					$("#label9").text("Ingresa Código de País");
+					$("#res1").val("Temperatura Actual: ");
+					$("#res2").val("Presión Atmosferica Actual: ");
+					$("#res3").val("Humedad Relativa Actual: ");
+					$("#res4").val("Dirección del Viento: ");
+					$("#res5").val("Velocidad del Viento: ");
+					$("#res6").val("Condiciones del cielo: ");
+					$("#res7").val("Descripción del cielo: ");
+					$("#res8").val("Temperatura Maxima: ");
+					$("#res9").val("Temperatura Minima: ");
+					$("#res10").val("Nombre estación: ");
+					$("#res11").val("Presión a nivel del mar: ");
+					$("#res12").val("Latitud: ");
+					$("#res13").val(" Longitud: ");
+				
+;				}
+				if (countryData.idioma == "po"){
+					$("#label7").text("Ingrese os Datos");
+					$("#label8").text("Ingrese Ciudade");
+					$("#label9").text("Ingrese Código do pais");
+					$("#res1").val("Temperatura Atual: ");
+					$("#res2").val("Pressao Atual: ");
+					$("#res3").val("Humedad Relativa Actual: ");
+					$("#res4").val("Dirección del Viento: ");
+					$("#res5").val("Velocidad del Viento: ");
+					$("#res6").val("Ráfagas de Viento: ");
+					$("#res7").val("Humedad Relativa Actual: ");
+					$("#res8").val("Presipitaciones en la ultima hora: ");
+					$("#res9").val("Presipitaciones en el ultimo dia: ");
+					$("#res10").val("Nombre estacao: ");
+					$("#res11").val("Pressao ao nivel do mar: ");
+					$("#res12").val("Latitud: ");
+					$("#res13").val(" Longitud: ");
+					
+;				}
+
+		}
+	</script>
+		
+	   
+	
+	<script>
+		function paso4() {
+			//valores
+			var temp = $("#temperatura").val();
+			var vol = $("#volumen").val();
+		
+			// variables que guardan las unidades sigen como string
+			var te = $("#temperaturaGlobal").val() ;
+			var vo = $("#volumenGlobal").val() ;
+			
+			if (te=="farenheit"){
+				temp=(temp-32)*5/9;
+				
+			}
+			if (vo=="galones"){
+				vol=3.785411784*vol;
+			}
+		//	document.getElementById("textoTest").innerHTML = temp;
+			var requestData = '';
+			var resultElement1= $('#resultado1');
+			var resultElement2= $('#resultado2');
+				$.ajax({
+					url: 'http://api.openweathermap.org/data/2.5/forecast/city?q='+temp+','+vol+'&APPID=1e3be9b757b07f2b6c697ed9db350c6d',
+					method: 'get',
+					data:{},
+					dataType: 'json',
+					success: function(data) {
+					var result1=(Math.floor(data.list[0].main.temp))-273.15;
+					var result2=(Math.floor(data.list[0].main.temp_max))-273.15;
+					var result3=(Math.floor(data.list[0].main.temp_min))-273.15;
+					resultElement1.html($('#res10').val()+data.city.name + " " + $("#codPais").val() + '<br/>'+ $('#res12').val()+ data.city.coord.lat + $('#res13').val()+ data.city.coord.lon + '<br/>'+ $('#res1').val()+Math.floor(result1) + " °C" +'<br/>' + $('#res2').val()+data.list[0].main.pressure + " hpa" + '<br/>' + $('#res3').val()+data.list[0].main.humidity + " %" + '<br/>' + $('#res4').val()+ data.list[0].wind.speed + '<br/>' + $('#res5').val()+data.list[0].wind.deg + '<br/>' + $('#res6').val()+data.list[0].weather[0].main + '<br/>' ) ;
+					resultElement2.html($('#res7').val()+data.list[0].weather[0].description + '<br/>' + $('#res11').val()+data.list[0].main.sea_level + " hpa" + '<br/>' + $('#res8').val() + Math.floor(result2) + " °C" + '<br/>' + $('#res9').val()+Math.floor(result3) + " °C" + '<br/>'  ) ;
+					$("#OK3").hide();
+					$("#ingresaDatos").hide();
+					$("#volver").show();	
+					$("#resultado1").show();
+					$("#resultado2").show();		
+					},
+					error: function(error) {
+						alert(error);
+						console.log(error);
+					}
+					
+				});
+					
+					/*
+		 $.ajax({
+                        type: "post",
+                        url: "http://www.webservicex.net/globalweather.asmx",
+                        contentType: "text/xml",
+						SOAPAction: "http://www.webserviceX.NET/GetWeather",
+                        data: soapBody,
+                        dataType: "xml",                    
+           
+            success: function(response) {
+                $('#label10').val(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+						
+		*/				
+			//mandar webservice con (temp, vol, ap)
+			// recibir datos del webservice y guardar en var hidden para hacer el resultado
+			
+				
+			
+		}
+	</script>
+	<script>
+		function paso5() {
+			$("#ingresaDatos").show();
+			$("#OK3").show();
+			$("#resultado1").hide();
+			$("#resultado2").hide();		
+			$("#volver").hide();	
+		}
+	</script>
+      
+    </head>
+    
+ <body>
+ 	<h1>Anglo Weather</h1>
+ 	 
+     		<form>
+			<div class="form-item" id="selPais" style="display:block;">
+				<input id="country_selector" type="text" style="display:block;>
+				<label for="country_selector">Selecciona tu país</label>
+			</div>
+			<div class="form-item" style="display:none;" id="cod1">
+				<input type="text" id="country_selector_code" name="country_selector_code" data-countrycodeinput="1" readonly="readonly" placeholder="Selected country code will appear here" />
+				<label for="country_selector_code"></label>
+			</div>
+			<script>
+		//instanciacion del plugin
+		$("#country_selector").countrySelect({
+			defaultCountry: "cl",
+			preferredCountries: ['cl', 'us', 'za', 'au', 'gb']
+		});
+	</script>
+		</form>
+		
+		
+		<input type="hidden" id="idiomaGlobal" name="idiomaGlobal">
+		<input type="hidden" id="temperaturaGlobal" name="temperaturaGlobal">
+		<input type="hidden" id="volumenGlobal" name="volumenGlobal">
+		<input type="hidden" id="codPais" name="codPais">
+		<input type="hidden" id="res1" name="res1">
+		<input type="hidden" id="res2" name="res2">
+		<input type="hidden" id="res3" name="res3">
+		<input type="hidden" id="res4" name="res4">
+		<input type="hidden" id="res5" name="res5">
+		<input type="hidden" id="res6" name="res6">
+		<input type="hidden" id="res7" name="res7">
+		<input type="hidden" id="res8" name="res8">
+		<input type="hidden" id="res9" name="res9">
+		<input type="hidden" id="res10" name="res10">
+		<input type="hidden" id="res11" name="res11">
+		<input type="hidden" id="res12" name="res12">
+		<input type="hidden" id="res13" name="res13">
+		
+		<p id="textoTest" style="display:none;">...texto test... </p>
+		
+		<div id="ingresaDatos" style="display:none;">
+			<label for="ingresaDatos" id="label7" style="display:block;"></label>
+			<input type="text" id="volumen" name="volumen"/>
+			<label for="volumen" id="label8" style="display:block;"></label>
+			<input type="text" id="temperatura" name="temperatura" />
+			<label for="temperatura" id="label9" style="display:block;"></label>
+		</div>
+		
+		<div id="resultado1" style="display:none;">
+			<label for="resultado1" id="label10" style="display:block;"></label>
+		</div>
+		<div id="resultado2" style="display:none;">
+			<label for="resultado2" id="label11" style="display:block;"></label>
+		</div>
+		
+		<button id="OK1" type="button" style="display:block;" onclick="paso2()">OK</button>
+		<button id="OK3" type="button" style="display:none;" onclick="paso4()">Submit</button>
+		<button id="volver" type="button" style="display:none;" onclick="paso5()">Reload</button>
+			
+    </body>
+</html>
