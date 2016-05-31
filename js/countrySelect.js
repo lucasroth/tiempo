@@ -604,18 +604,6 @@
 		g: "litros",
 		h: "celsius",
 		j: "es"
-	}, {
-		n: "China",
-		i: "cn",
-		a: "Diesel",
-		b: "Gasoline 93",
-		c: "Gasoline 95",
-		d: "Gasoline 97",
-		e: "Kerosene",
-		f: "Jet A1",
-		g: "litros",
-		h: "celsius",
-		j: "en"
 	},  {
 		n: "Colombia",
 		i: "co",
@@ -676,19 +664,7 @@
 		g: "litros",
 		h: "celsius",
 		j: "es"
-	}, {
-		n: "Egypt ",
-		i: "eg",
-		a: "Diesel",
-		b: "Gasoline 93",
-		c: "Gasoline 95",
-		d: "Gasoline 97",
-		e: "Kerosene",
-		f: "Jet A1",
-		g: "litros",
-		h: "celsius",
-		j: "en"
-	}, {
+	},{
 		n: "El Salvador",
 		i: "sv",
 		a: "Diesel",
@@ -772,19 +748,7 @@
 		g: "litros",
 		h: "celsius",
 		j: "en"
-	}, {
-		n: "Saudi Arabia ",
-		i: "sa",
-		a: "Diesel",
-		b: "Gasoline 93",
-		c: "Gasoline 95",
-		d: "Gasoline 97",
-		e: "Kerosene",
-		f: "Jet A1",
-		g: "litros",
-		h: "celsius",
-		j: "en"
-	}, {
+	},{
 		n: "South Africa",
 		i: "za",
 		a: "Diesel",
@@ -797,18 +761,6 @@
 		h: "celsius",
 		j: "en"
 	},{
-		n: "United Arab Emirates ",
-		i: "ae",
-		a: "Diesel",
-		b: "Gasoline 93",
-		c: "Gasoline 95",
-		d: "Gasoline 97",
-		e: "Kerosene",
-		f: "Jet A1",
-		g: "litros",
-		h: "celsius",
-		j: "en"
-	}, {
 		n: "United Kingdom",
 		i: "gb",
 		a: "Diesel",
