@@ -1,0 +1,67 @@
+.fh-radio > [type="radio"]:checked,
+.fh-radio > [type="radio"]:not(:checked) {
+  width: 0;
+  height: 0;
+  display: none;
+  opacity: 0; }
+  
+  .fh-radio > [type="radio"]:checked + label,
+  .fh-radio > [type="radio"]:not(:checked) + label {
+    display: inline-block;
+    margin-right: 7px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    padding-left: 22px;
+    padding-top: 2px;
+    position: relative;
+    cursor: pointer; }
+
+	.fh-radio > [type="radio"]:checked + label:before,
+    .fh-radio > [type="radio"]:not(:checked) + label:before {
+      position: absolute;
+      display: inline-block;
+      bottom: 1px;
+      left: 0;
+      width: 13px;
+      height: 13px;
+      border: 2px solid #849fbb;
+      color: #849fbb; }
+	  
+	 .fh-radio > [type="radio"]:checked + label:hover:before,
+    .fh-radio > [type="radio"]:not(:checked) + label:hover:before {
+      background-color: #849fbb; }
+
+	  .fh-radio > [type="radio"]:checked:focus + label:before,
+  .fh-radio > [type="radio"]:not(:checked):focus + label:before {
+    border-color: #6fb5fb;
+    box-shadow: 0 0 6px 0 #6fb5fb; }
+	
+	.fh-radio > [type="radio"]:checked[disabled] + label,
+  .fh-radio > [type="radio"]:not(:checked)[disabled] + label {
+    cursor: not-allowed;
+    opacity: .4; }
+	
+	  .fh-radio > [type="radio"]:checked[disabled] + label:before,
+    .fh-radio > [type="radio"]:not(:checked)[disabled] + label:before {
+      opacity: .7; }
+	  
+	  .fh-radio > [type="radio"]:checked + label:before,
+.fh-radio > [type="radio"]:not(:checked) + label:before {
+  content: "";
+  border-radius: 15px;
+  -webkit-transition: border-color .2s ease-in, box-shadow .1s ease-in, background-color .2s ease-in, box-shadow .2s ease-in;
+  -moz-transition: border-color .2s ease-in, box-shadow .1s ease-in, background-color .2s ease-in;
+  -o-transition: border-color .2s ease-in, box-shadow .1s ease-in, background-color .2s ease-in;
+  -ms-transition: border-color .2s ease-in, box-shadow .1s ease-in, background-color .2s ease-in;
+  transition: border-color .2s ease-in, box-shadow .1s ease-in, background-color .2s ease-in; }
+
+.fh-radio > [type="radio"]:checked + label:before {
+  color: #57cb85;
+  border-color: #57cb85;
+  background-color: #57cb85;
+  box-shadow: inset 0 0 0 1px #fff; }
+
+.fh-radio > [type="radio"]:not(:checked) + label:before {
+  box-shadow: inset 0 0 0 3px #fff; }
+	  
+	
