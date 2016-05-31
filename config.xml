@@ -3,17 +3,17 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.lobostop.combustibles"
+        id        = "com.rotunda.tiempo"
         version   = "1.0.0">
 
-    <name>combustibles</name>
+    <name>tiempo</name>
 
     <description>
-        primera versión de combustibles
+        primera versión de tiempo
     </description>
 
-    <author href="http://www.lobostop.cl" email="lucas@lobostop.cl">
-        Lobostop Team
+    <author href="http://www.rotundapost.cl" email="lucas@rotundapost.cl">
+        
     </author>
 
     <feature name="http://api.phonegap.com/1.0/network"/>
